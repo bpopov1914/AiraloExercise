@@ -35,5 +35,22 @@ namespace AiraloExercise.Utils
 
             return response;
         }
+
+        public RestResponse GetListOfOrders(string token)
+        {
+            string filterDescription = "Test Order: merhaba-7days-1gb"; //Change to "Boris 6 merhaba-7days-1gb eSim cards" once placing an order is implemented
+            string searchParameters = 
+                $"filter[description]={filterDescription}&limit=50&page=1";
+            RestClientOptions options = new RestClientOptions(baseUrl)
+            {
+                Timeout = TimeSpan.FromSeconds(120),
+            };
+            RestClient client = new RestClient(options);
+            RestRequest request = new RestRequest($"/v2/orders?{searchParameters}", Method.Get);
+            request.AddHeader("Accept", "application/json");
+            request.AddHeader("Authorization", $"Bearer {token}");
+            RestResponse response = client.Execute(request);
+            return response;
+        }
     }
 }

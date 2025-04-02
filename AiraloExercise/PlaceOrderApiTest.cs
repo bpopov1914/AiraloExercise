@@ -22,6 +22,8 @@ namespace AiraloExercise
             string token = extractResponseData.ExtractToken(authResponse.Content);
             Assert.That(authResponse.StatusCode, Is.EqualTo(HttpStatusCode.OK),
                 $"Expected status code 200, but got {authResponse.StatusCode}");
+            RestResponse getOrderList = restCalls.GetListOfOrders(token);
+
         }
     }
 }

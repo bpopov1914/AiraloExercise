@@ -34,5 +34,7 @@ namespace AiraloExercise.Utils
                 throw new InvalidOperationException("Error parsing the JSON response.", ex);
             }
         }
+
+
     }
 }
