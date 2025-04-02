@@ -1,6 +1,9 @@
-﻿using System;
+﻿using AiraloExercise.Utils;
+using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,15 +11,17 @@ namespace AiraloExercise
 {
     internal class PlaceOrderApiTest
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
+
+        RestCalls restCalls = new RestCalls();
+        ResponseDataExtractors extractResponseData = new ResponseDataExtractors();
 
         [Test]
         public void PlaceOrder()
         {
-            Assert.Pass();
+            RestResponse authResponse = restCalls.RequestAccessToken();
+            string token = extractResponseData.ExtractToken(authResponse.Content);
+            Assert.That(authResponse.StatusCode, Is.EqualTo(HttpStatusCode.OK),
+                $"Expected status code 200, but got {authResponse.StatusCode}");
         }
     }
 }
