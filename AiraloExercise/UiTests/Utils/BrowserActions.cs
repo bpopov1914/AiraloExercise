@@ -39,5 +39,26 @@ namespace AiraloExercise.UiTests.Utils
             firstPackageButton.Click();
 
         }
+
+        public Dictionary<string, string> GetPackageInfo(IWebDriver driver)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            Dictionary<string, string> packageInfo = new Dictionary<string, string>();
+
+            IWebElement title = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions
+                .ElementIsVisible(By.XPath(".//div[@data-testid='sim-detail-operator-title']/p")));
+            IWebElement coverage = driver.FindElement(By.XPath(".//div[@class='sim-detail-top']//p[@data-testid='COVERAGE-value']"));
+            IWebElement data = driver.FindElement(By.XPath(".//div[@class='sim-detail-top']//p[@data-testid='DATA-value']"));
+            IWebElement validity = driver.FindElement(By.XPath(".//div[@class='sim-detail-top']//p[@data-testid='VALIDITY-value']"));
+            IWebElement price = driver.FindElement(By.XPath(".//div[@class='sim-detail-top']//p[@data-testid='PRICE-value']"));
+
+            packageInfo.Add("Title", title.GetAttribute("innerText"));
+            packageInfo.Add("Coverage", coverage.GetAttribute("innerText"));
+            packageInfo.Add("Data", data.GetAttribute("innerText"));
+            packageInfo.Add("Validity", validity.GetAttribute("innerText"));
+            packageInfo.Add("Price", price.GetAttribute("innerText"));
+
+            return packageInfo;
+        }
     }
 }
