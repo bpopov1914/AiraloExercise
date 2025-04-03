@@ -1,3 +1,4 @@
+using AiraloExercise.UiTests.Utils;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
@@ -7,14 +8,23 @@ namespace AiraloExercise.UiTests
     public class JapanPackageUiTest
     {
         IWebDriver driver;
+        BrowserActions browserActions = new BrowserActions();
+        ScreenshotHelper screenshotHelper = new ScreenshotHelper();
 
         [SetUp]
         public void Setup()
         {
             ChromeOptions options = new ChromeOptions();
-            options.AddArgument("--start-maximized"); //Opens the browser in full screen mode
-            options.AddArgument("--disable-notifications"); //Deactivate pending notifications TODO: Check if this is working
-            driver = new ChromeDriver(options);
+            options.AddArgument("--start-maximized"); 
+            options.AddArgument("--disable-notifications"); 
+            try
+            {
+                driver = new ChromeDriver(options);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error starting the driver: " + ex.Message);
+            }
 
         }
 
@@ -22,10 +32,14 @@ namespace AiraloExercise.UiTests
         public void JapanPackage()
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            string url = "https://www.airalo.com/";
 
             if (driver.WindowHandles.Any())
             {
-                driver.Navigate().GoToUrl("https://www.airalo.com/");
+                browserActions.NavigateToUrl(driver, url);
+                browserActions.SearchForCountry(driver, "Japan");
+                browserActions.SelectFirstPackage(driver);
+                screenshotHelper.TakeScreenshot(driver, "screenshot");
             }
             else
             {
