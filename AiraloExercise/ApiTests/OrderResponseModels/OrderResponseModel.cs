@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AiraloExercise.OrderResponseModels
+namespace AiraloExercise.ApiTests.OrderResponseModels
 {
     public class OrderResponseModel
     {

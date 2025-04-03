@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AiraloExercise.SimListResponseModels
+namespace AiraloExercise.ApiTests.OrderResponseModels
 {
-    public class SimData
+    public class Sim
     {
         public int id { get; set; }
         public string created_at { get; set; }
-        public string iccid { get; set; }        
-        public Simable simable { get; set; }
+        public string iccid { get; set; }
     }
 }

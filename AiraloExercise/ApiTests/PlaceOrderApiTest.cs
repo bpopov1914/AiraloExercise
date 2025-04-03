@@ -1,11 +1,11 @@
-﻿using AiraloExercise.OrderResponseModels;
-using AiraloExercise.SimListResponseModels;
-using AiraloExercise.Utils;
+﻿using AiraloExercise.ApiTests.OrderResponseModels;
+using AiraloExercise.ApiTests.SimListResponseModels;
+using AiraloExercise.ApiTests.Utils;
 using Newtonsoft.Json;
 using RestSharp;
 using System.Net;
 
-namespace AiraloExercise
+namespace AiraloExercise.ApiTests
 {
     internal class PlaceOrderApiTest
     {
@@ -40,7 +40,7 @@ namespace AiraloExercise
             int responseQuantity = orderResponse.data.quantity;
             string responseDescription = orderResponse.data.description;
             int validity = orderResponse.data.validity;
-            string data = orderResponse.data.data; 
+            string data = orderResponse.data.data;
             double price = orderResponse.data.price;
 
             Assert.Multiple(() =>
@@ -55,7 +55,7 @@ namespace AiraloExercise
                 Assert.That(orderResponse.data.sims.Count, Is.EqualTo(6), $"Expected sim count to be 6, but was {orderResponse.data.sims.Count}");
             });
 
-           
+
         }
         [Test]
         [Order(2)]

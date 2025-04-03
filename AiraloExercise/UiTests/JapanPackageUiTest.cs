@@ -2,7 +2,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 
-namespace AiraloExercise
+namespace AiraloExercise.UiTests
 {
     public class JapanPackageUiTest
     {
@@ -15,7 +15,7 @@ namespace AiraloExercise
             options.AddArgument("--start-maximized"); //Opens the browser in full screen mode
             options.AddArgument("--disable-notifications"); //Deactivate pending notifications TODO: Check if this is working
             driver = new ChromeDriver(options);
-            
+
         }
 
         [Test]

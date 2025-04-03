@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AiraloExercise.Utils
+namespace AiraloExercise.ApiTests.Utils
 {
     public class ResponseDataExtractors
     {
