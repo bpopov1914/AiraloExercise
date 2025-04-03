@@ -1,11 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AiraloExercise.UiTests.Utils
 {
@@ -14,6 +8,20 @@ namespace AiraloExercise.UiTests.Utils
         public void NavigateToUrl(IWebDriver driver, string url)
         {
             driver.Navigate().GoToUrl(url);
+        }
+
+        public void ChangeCurrentcy(IWebDriver driver)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            IWebElement currency = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions
+                .ElementIsVisible(By.XPath(".//span[@data-testid='€ EUR-header-language']")));
+            currency.Click();
+            IWebElement usdCurrency = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions
+                .ElementIsVisible(By.XPath(".//a[@data-testid='USD-currency-select']")));
+            usdCurrency.Click();
+            IWebElement updateButton = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions
+                .ElementIsVisible(By.XPath(".//button[@data-testid='UPDATE-button']")));
+            updateButton.Click();
         }
 
         public void SearchForCountry(IWebDriver driver, string searchText)
@@ -25,8 +33,7 @@ namespace AiraloExercise.UiTests.Utils
             searchBox.SendKeys(searchText);
             IWebElement japanLocalOption = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions
                 .ElementIsVisible(By.XPath("//span[@data-testid='Japan-name']")));
-            japanLocalOption.Click();
-            
+            japanLocalOption.Click();            
         }
 
         public void SelectFirstPackage(IWebDriver driver)
@@ -37,7 +44,6 @@ namespace AiraloExercise.UiTests.Utils
 
             IWebElement firstPackageButton = driver.FindElement(By.XPath("//a[@href='/japan-esim/moshi-moshi-7days-1gb']//button[@type='button']"));
             firstPackageButton.Click();
-
         }
 
         public Dictionary<string, string> GetPackageInfo(IWebDriver driver)

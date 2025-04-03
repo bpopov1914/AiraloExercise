@@ -1,9 +1,7 @@
-using AiraloExercise.ApiTests.OrderResponseModels;
 using AiraloExercise.UiTests.Utils;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
-using System.Diagnostics;
 
 namespace AiraloExercise.UiTests
 {
@@ -48,31 +46,24 @@ namespace AiraloExercise.UiTests
             {
                 browserActions.NavigateToUrl(driver, url);
                 browserActions.SearchForCountry(driver, "Japan");
+                browserActions.ChangeCurrentcy(driver);
                 browserActions.SelectFirstPackage(driver);
                 Dictionary<string, string> japanPackageDetails = browserActions.GetPackageInfo(driver);
 
                 Assert.That(japanPackageDetails, Is.Not.Null, "No package details returned.");
+                screenshotHelper.TakeScreenshot(driver, "screenshot");
 
                 foreach (var key in japanPackageDetails.Keys)
                 {
                     Assert.That(japanPackageDetails[key], Is.EqualTo(expectedPackageDetails[key]),
                         $"Mismatch for key: {key}. Expected: {expectedPackageDetails[key]}, but got: {japanPackageDetails[key]}");
                 }
-
-                screenshotHelper.TakeScreenshot(driver, "screenshot");
+                                
             }
             else
             {
                 Assert.Fail("Browser wasn't opened.");
             }
-
-            /*
-             *  Title: Moshi Moshi
-                Coverage: Japan
-                Data: 1 GB
-                Validity: 7 days
-                Price: $4.50
-             */
         }
 
         [TearDown]

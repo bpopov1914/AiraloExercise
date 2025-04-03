@@ -1,11 +1,4 @@
-﻿using Microsoft.VisualStudio.CodeCoverage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AiraloExercise.ApiTests.OrderResponseModels
+﻿namespace AiraloExercise.ApiTests.OrderResponseModels
 {
     public class Data
     {
