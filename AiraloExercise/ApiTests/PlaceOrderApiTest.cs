@@ -37,6 +37,8 @@ namespace AiraloExercise.ApiTests
 
             OrderResponseModel orderResponse = JsonConvert.DeserializeObject<OrderResponseModel>(placeOrderResponse.Content);
 
+            Assert.That(orderResponse.data, Is.Not.Null, "No data returned.");
+
             string responsePackageId = orderResponse.data.package_id;
             int responseQuantity = orderResponse.data.quantity;
             string responseDescription = orderResponse.data.description;
@@ -46,7 +48,6 @@ namespace AiraloExercise.ApiTests
 
             Assert.Multiple(() =>
             {
-                Assert.That(orderResponse.data, Is.Not.Null, "No data returned.");
                 Assert.That(responsePackageId, Is.EqualTo("merhaba-7days-1gb"), $"Package id {responsePackageId} is not expected.");
                 Assert.That(responseQuantity, Is.EqualTo(6), $"Expected quantity is 6, but was {responseQuantity}.");
                 Assert.That(responseDescription, Is.EqualTo(description), $"Expected description is \"{description}\", but was \"{responseDescription}.\"");
