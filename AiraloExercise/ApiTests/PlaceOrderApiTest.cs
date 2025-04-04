@@ -29,7 +29,7 @@ namespace AiraloExercise.ApiTests
 
         [Test]
         [Order(1)]
-        public void PlaceOrderAndGetListOfeSim()
+        public void PlaceOrder()
         {
             RestResponse placeOrderResponse = restCalls.SubmitOrder(token, quantity, package_id, description);
             Assert.That(placeOrderResponse.StatusCode, Is.EqualTo(HttpStatusCode.OK),
