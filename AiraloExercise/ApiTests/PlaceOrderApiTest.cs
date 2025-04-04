@@ -24,6 +24,7 @@ namespace AiraloExercise.ApiTests
             token = extractResponseData.ExtractToken(authResponse.Content);
             Assert.That(authResponse.StatusCode, Is.EqualTo(HttpStatusCode.OK),
                 $"Expected status code 200, but got {authResponse.StatusCode}");
+            Assert.That(token, Is.Not.Null, "Token was NULL.");
         }
 
         [Test]
