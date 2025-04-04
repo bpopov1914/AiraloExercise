@@ -31,7 +31,6 @@ namespace AiraloExercise.UiTests
         [Test]
         public void JapanPackage()
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             string url = "https://www.airalo.com/";
             Dictionary<string, string> expectedPackageDetails = new Dictionary<string, string>
         {
