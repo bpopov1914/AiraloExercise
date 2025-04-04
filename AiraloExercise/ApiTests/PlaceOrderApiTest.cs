@@ -35,8 +35,7 @@ namespace AiraloExercise.ApiTests
             Assert.That(placeOrderResponse.StatusCode, Is.EqualTo(HttpStatusCode.OK),
                 $"Expected status code 200, but got {placeOrderResponse.StatusCode}");
 
-            OrderResponseModel orderResponse = JsonConvert.DeserializeObject<OrderResponseModel>(placeOrderResponse.Content);
-
+            OrderResponseModel orderResponse = JsonConvert.DeserializeObject<OrderResponseModel>(placeOrderResponse.Content);            
             Assert.That(orderResponse.data, Is.Not.Null, "No data returned.");
 
             string responsePackageId = orderResponse.data.package_id;
